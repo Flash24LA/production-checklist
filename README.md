@@ -27,7 +27,7 @@ Until a step has a photo, it shows a "Photo coming soon" placeholder.
 
 - Every step needs a unique `id`. **Don't rename an `id` after people start using the app.** Saved check-offs are linked to it.
 - `tip` shows in blue and `warning` shows in amber. Both are optional.
-- To add the Video steps later, copy the shape of the `audio` guide into the `video` entry and remove `comingSoon: true`.
+- To add the Visual steps later, copy the shape of the `audio` guide into the `visual` entry and remove `comingSoon: true`.
 
 ## Who ran it: the Google Sheet log
 

@@ -3,7 +3,7 @@
  *  PRODUCTION GUIDES — EDIT THIS FILE TO CHANGE THE STEPS
  * ============================================================
  *
- * Each guide (Audio, Video, ...) has two routines: "setup" and "breakdown".
+ * Each guide (Audio, Visual, ...) has two routines: "setup" and "breakdown".
  * Each routine is split into sections, and each section holds steps.
  *
  * Step fields:
@@ -405,6 +405,6 @@ window.PRODUCTION_GUIDES = [
     },
   },
 
-  // Video — flip comingSoon to false and add routines when the steps are ready.
-  { id: "video", name: "Video", icon: "🎥", description: "Cameras, switcher and screens.", comingSoon: true },
+  // Visual — flip comingSoon to false and add routines when the steps are ready.
+  { id: "visual", name: "Visual", icon: "🎥", description: "Cameras, switcher and screens.", comingSoon: true },
 ];
