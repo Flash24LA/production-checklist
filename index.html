@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#14161a" />
+  <title>Production Checklist</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn" id="backBtn" aria-label="Back" hidden>←</button>
+    <div class="topbar-title" id="topTitle">Production Checklist</div>
+    <button class="icon-btn" id="menuBtn" aria-label="Options" hidden>⋯</button>
+  </header>
+
+  <main id="app"></main>
+
+  <!-- Photo viewer -->
+  <div class="lightbox" id="lightbox" hidden>
+    <img id="lightboxImg" alt="" />
+    <button class="icon-btn lightbox-close" aria-label="Close">✕</button>
+  </div>
+
+  <!-- Options sheet -->
+  <div class="sheet-backdrop" id="sheet" hidden>
+    <div class="sheet" role="dialog" aria-label="Options">
+      <div id="sheetBody"></div>
+    </div>
+  </div>
+
+  <script src="data/config.js"></script>
+  <script src="data/guides.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
