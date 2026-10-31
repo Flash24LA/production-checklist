@@ -8,6 +8,7 @@
   const app = document.getElementById("app");
   const backBtn = document.getElementById("backBtn");
   const menuBtn = document.getElementById("menuBtn");
+  const adminLink = document.getElementById("adminLink");
   const topTitle = document.getElementById("topTitle");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
@@ -187,6 +188,7 @@
     backBtn.onclick = back || null;
     menuBtn.hidden = !menu;
     menuBtn.onclick = menu || null;
+    adminLink.hidden = !!(back || menu); // home screen only
     document.title = title === "Production Checklist" ? title : title + " · Production Checklist";
   }
 
