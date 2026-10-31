@@ -92,7 +92,7 @@
       startedAt: state.startedAt,
       finishedAt,
       minutes: Math.round((new Date(finishedAt) - new Date(state.startedAt)) / 60000),
-      stepsDone: `${progressOf(steps, state).done}/${steps.length}`,
+      stepsDone: `${progressOf(steps, state).done} of ${steps.length}`, // not "15/15" — Sheets can read "3/15" as a date
       notes: steps.filter((s) => state.notes[s.id]).map((s) => `${s.title}: ${state.notes[s.id].trim()}`).join("\n"),
       routineTitle: routine.title,
       key: `${guide.id}:${routineKey}`,

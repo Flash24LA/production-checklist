@@ -40,7 +40,28 @@ window.APP_CONFIG = {
 
 Finish a checklist. The last screen should say **"✓ Saved to the production log"**, and a **Runs** tab with a new row should appear in your sheet.
 
+## 5. Set your admin username and password
+The admin page (`/admin.html`) shows every completed setup and breakdown, plus all notes. Its login is stored in your script's private settings, not in the website code.
+
+1. In the Apps Script editor, click **Project Settings** ⚙️ in the left sidebar.
+2. Scroll to **Script properties** and click **Add script property**. Add these two:
+
+   | Property | Value |
+   |---|---|
+   | `ADMIN_USER` | the username you want, e.g. `leul` |
+   | `ADMIN_PASSWORD` | a strong password, at least 12 characters |
+
+3. Click **Save script properties**. You don't need to redeploy for this.
+
+Then open `https://flash24la.github.io/production-checklist/admin.html` and sign in.
+
+- After 5 wrong attempts, sign-in is blocked for 15 minutes.
+- You stay signed in for up to 6 hours, or until you close the tab.
+- To change your password, edit `ADMIN_PASSWORD` in the same place.
+- The admin page isn't linked from the app. Bookmark it.
+
 ## Good to know
+- **If you already deployed an older version of the script**, paste the new `Code.gs` over it and publish a new version as described in the next point. The admin page needs the new code.
 - **If you edit `Code.gs` later**, use **Deploy → Manage deployments → ✏️ Edit → Version: New version → Deploy**. That keeps the same URL. If you choose "New deployment" instead, you get a new URL and have to update `config.js`.
 - **Offline is fine.** If a phone has no signal when someone finishes, the row is saved on the phone and sent the next time the app is opened online.
 - **Only finished checklists are logged.** A run someone abandons halfway isn't recorded.
