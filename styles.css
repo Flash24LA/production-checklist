@@ -92,7 +92,12 @@ main { max-width: 760px; margin: 0 auto; padding: 16px 16px 120px; }
 
 /* ---------- Progress header ---------- */
 .progress-wrap { margin-bottom: 14px; }
-.progress-meta { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+.progress-meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+.restart-btn {
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font-size: 13px; font-weight: 600; padding: 5px 10px; border-radius: 99px; white-space: nowrap;
+}
+.restart-btn.armed { background: #d33; border-color: #d33; color: #fff; }
 .progress { height: 10px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
 .progress > i { display: block; height: 100%; background: var(--accent); transition: width .3s ease; }
 .progress.full > i { background: var(--done); }

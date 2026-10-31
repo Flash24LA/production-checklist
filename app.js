@@ -250,9 +250,33 @@
     const p = progressOf(ctx.steps, ctx.state);
     return `
       <div class="progress-wrap">
-        <div class="progress-meta"><span>${p.done} of ${p.total} steps done</span><span>${p.pct}%</span></div>
+        <div class="progress-meta">
+          <span>${p.done} of ${p.total} steps done · ${p.pct}%</span>
+          <button class="restart-btn" id="restartBtn">↺ Restart</button>
+        </div>
         <div class="progress ${p.pct === 100 ? "full" : ""}"><i style="width:${p.pct}%"></i></div>
       </div>`;
+  }
+
+  // Restart = throw away this run and go back to the name/date screen. Needs a second tap.
+  function armRestart(btn, ctx, armedText) {
+    if (!btn) return;
+    const label = btn.textContent;
+    let timer = null;
+    btn.onclick = () => {
+      if (!btn.classList.contains("armed")) {
+        btn.classList.add("armed");
+        btn.textContent = armedText;
+        timer = setTimeout(() => {
+          btn.classList.remove("armed");
+          btn.textContent = label;
+        }, 4000);
+        return;
+      }
+      clearTimeout(timer);
+      saveState(ctx.guide.id, ctx.routineKey, emptyState());
+      go(`${ctx.guide.id}/${ctx.routineKey}`);
+    };
   }
 
   function viewToggle(ctx, active) {
@@ -396,6 +420,7 @@
       </div>`;
 
     app.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => go(b.dataset.go)));
+    armRestart(document.getElementById("restartBtn"), ctx, "Tap again to restart");
     wirePhotos(app);
 
     const note = document.getElementById("noteInput");
@@ -460,6 +485,7 @@
       ${allDone ? `<button class="btn primary block" data-go="${base}/done">View completion summary</button>` : ""}`;
 
     app.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => go(b.dataset.go)));
+    armRestart(document.getElementById("restartBtn"), ctx, "Tap again to restart");
     app.querySelectorAll("[data-toggle]").forEach((b) => {
       b.onclick = () => {
         const step = ctx.steps.find((s) => s.id === b.dataset.toggle);
@@ -592,17 +618,7 @@
     nameEl.oninput = saveEdits;
     dateEl.onchange = saveEdits;
 
-    const resetBtn = document.getElementById("resetBtn");
-    let armed = false;
-    resetBtn.onclick = () => {
-      if (!armed) {
-        armed = true;
-        resetBtn.textContent = "Tap again to clear all check-offs and notes";
-        return;
-      }
-      saveState(guide.id, routineKey, emptyState());
-      go(`${guide.id}/${routineKey}`);
-    };
+    armRestart(document.getElementById("resetBtn"), ctx, "Tap again to clear all check-offs and notes");
     document.getElementById("closeSheetBtn").onclick = closeSheet;
   }
 
