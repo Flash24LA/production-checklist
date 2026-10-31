@@ -280,7 +280,7 @@
       esc(step.imageCaption || "") +
       (stockBadge ? `<span class="photo-credit">${esc(step.imageCredit)}</span>` : "");
     return `
-      <div class="photo" ${step.image ? "" : 'data-empty="1"'}>${img || placeholder}${stockBadge}</div>
+      <div class="photo ${step.image && !step.imageCredit ? "fit" : ""}">${img || placeholder}${stockBadge}</div>
       ${caption ? `<div class="photo-caption">${caption}</div>` : ""}`;
   }
 
